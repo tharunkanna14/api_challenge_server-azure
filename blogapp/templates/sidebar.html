@@ -1,0 +1,41 @@
+{% block sidebar %}
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right ">
+    <div class="card my-4">
+        <h5 class="card-header">About this webapp</h5>
+        <div class="card-body">
+            <p class="card-text"> This awesome blog is made on the top of my favourite full-stack framework <a href="https://www.djangoproject.com/" target="_blank" style="text-decoration:none; color:green">Django</a></font>.&nbsp;Follow up the tutorial to learn how I learnt Django..!</p>
+            <a href="http://www.hashcut.com/embed/play/xBGRtAk" target="_blank"
+                class="btn btn-danger">Know more!</a>
+            <hr>
+            <h5><b>Total Views</b></h5>
+            <!-- hitwebcounter Code START -->
+            <a href="https://www.hitwebcounter.com" target="_blank">
+            <img src="https://hitwebcounter.com/counter/counter.php?page=7719726&style=0005&nbdigits=5&type=page&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+            <hr>
+            <h5>Visit my flowpage for and explore my website and articles</h5>
+            <div class="card">
+                <div class="card-body">
+                    <a href = "https://flow.page/ahn1305" target="_blank">Flowpage</a>
+                </div>
+            </div>
+            <hr>
+            <!-- The text field -->
+            <h5>Copy to share</h5>
+            <input type="text" value="https://thdjangoblog.pythonanywhere.com" id="myInput">
+            <!-- The button used to copy the text -->
+            <button onclick="myFunction()">Copy</button>
+            <script>
+                function myFunction() {
+                  var copyText = document.getElementById("myInput");
+                  copyText.select();
+                  copyText.setSelectionRange(0, 99999)
+                  document.execCommand("copy");
+                  alert("Copied the link: " + copyText.value);
+                }
+            </script>
+
+        </div>
+    </div>
+</div>
+{% endblock sidebar %}
