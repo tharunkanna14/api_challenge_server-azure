@@ -8,8 +8,10 @@ on:
   push:
     branches:
       - master
-  workflow_dispatch:
-
+      
+env:
+  WEBAPP_NAME: 'azure-demos'  # Replace with the name of your Azure web app
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,6 +33,9 @@ jobs:
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      
+      - name: Run tests
+        run: python manage.py runserver
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
@@ -61,3 +66,8 @@ jobs:
           app-name: 'azure-demos'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F0401A9E47334697A564FDE0743B2E71 }}
+      
+      - name: Deploy to App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.azure-demos}}
