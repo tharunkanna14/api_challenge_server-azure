@@ -30,6 +30,12 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
+        run: pip install django 
+        
+      - name: Install dependencies
+        run: pip install djangorestframework
+        
+      - name: Install dependencies
         run: pip freeze > requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
