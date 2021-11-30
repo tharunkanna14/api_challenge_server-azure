@@ -8,10 +8,8 @@ on:
   push:
     branches:
       - master
-      
-env:
-  WEBAPP_NAME: 'azure-demos'  # Replace with the name of your Azure web app
-  
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,18 +28,9 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install django 
-        
-      - name: Install dependencies
-        run: pip install djangorestframework
-        
-      - name: Install dependencies
-        run: pip freeze > requirements.txt
+        run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      
-      - name: Run tests
-        run: python manage.py runserver
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
@@ -71,9 +60,4 @@ jobs:
         with:
           app-name: 'azure-demos'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F0401A9E47334697A564FDE0743B2E71 }}
-      
-      - name: Deploy to App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.azure-demos}}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3D95E23EC9004B1997B957C65E1B3E73 }}
