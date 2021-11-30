@@ -26,11 +26,19 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-      
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install django 
+        
+      - name: Install dependencies
+        run: pip install djangorestframework
+        
+      - name: Install dependencies
+        run: pip freeze > requirements.txt    
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      
+      - name: Run tests
+        run: python manage.py runserver
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
@@ -61,3 +69,8 @@ jobs:
           app-name: 'azure-demos'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3D95E23EC9004B1997B957C65E1B3E73 }}
+          
+      - name: Deploy to App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.azure-demos}}
