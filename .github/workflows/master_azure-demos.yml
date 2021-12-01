@@ -35,9 +35,6 @@ jobs:
         
       - name: Install dependencies
         run: pip freeze > requirements.txt
-          
-      - name: Collect static
-        run: python manage.py collectstatic
 
       - name: Run tests
         run: python manage.py test
