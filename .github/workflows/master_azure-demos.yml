@@ -30,18 +30,16 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install django 
+        run: pip3 install django 
         
       - name: Install dependencies
-        run: pip install djangorestframework
-        
-      - name: Install dependencies
-        run: pip freeze > requirements.txt
+        run: pip3 install djangorestframework
+
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
-      - name: Run tests
-        run: python manage.py runserver
+      - name: Run server
+        run: python3 manage.py runserver
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
